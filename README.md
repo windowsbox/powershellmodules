@@ -9,6 +9,8 @@ Repo for PowerShell modules used to build out new Windows boxes from scratch.
 - Disable Hibernate
 - Disable AutoLogon
 - Enable RDP
+- Configure Explorer
+- Configure Vagrant account
 - Compile .NET Assemblies
 - Install Choco `iwr https://chocolatey.org/install.ps1 -UseBasicParsing | iex`
 - Install VM Guest Tools
