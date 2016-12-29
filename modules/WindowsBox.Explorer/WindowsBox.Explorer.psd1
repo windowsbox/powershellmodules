@@ -12,7 +12,7 @@
 RootModule = 'WindowsBox.Explorer'
 
 # Version number of this module.
-ModuleVersion = '0.1'
+ModuleVersion = '0.2'
 
 # ID used to uniquely identify this module
 GUID = 'bb192e0c-37cc-4cce-a421-723bf345ef2d'

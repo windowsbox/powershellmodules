@@ -12,7 +12,7 @@
 RootModule = 'WindowsBox.AutoLogon'
 
 # Version number of this module.
-ModuleVersion = '0.1'
+ModuleVersion = '0.2'
 
 # ID used to uniquely identify this module
 GUID = '13a7f341-131f-4c0b-8c8e-20ab24e293f0'

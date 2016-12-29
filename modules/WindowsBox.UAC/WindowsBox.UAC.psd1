@@ -12,7 +12,7 @@
 RootModule = 'WindowsBox.UAC'
 
 # Version number of this module.
-ModuleVersion = '0.1'
+ModuleVersion = '0.2'
 
 # ID used to uniquely identify this module
 GUID = '47eb34c0-a263-4adf-9d75-62ca07ca0357'

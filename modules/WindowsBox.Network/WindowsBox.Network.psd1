@@ -12,7 +12,7 @@
 RootModule = 'WindowsBox.Network'
 
 # Version number of this module.
-ModuleVersion = '0.1'
+ModuleVersion = '0.2'
 
 # ID used to uniquely identify this module
 GUID = '39b8bb07-38e5-43d0-8220-1d7eb0601c36'

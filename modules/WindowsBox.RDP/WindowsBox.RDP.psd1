@@ -12,7 +12,7 @@
 RootModule = 'WindowsBox.RDP'
 
 # Version number of this module.
-ModuleVersion = '0.1'
+ModuleVersion = '0.2'
 
 # ID used to uniquely identify this module
 GUID = '144b1191-0d29-4f87-9285-cd041742edc2'
