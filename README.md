@@ -12,10 +12,12 @@ Repo for PowerShell modules used to build out new Windows boxes from scratch.
 - Enable RDP
 - Configure Explorer
 - Configure Vagrant account
-- Compile .NET Assemblies
+- Compile .NET Assemblies (is this really needed?)
+- Defrag/Compact drive
+
+### Other Actions
 - Install Choco `iwr https://chocolatey.org/install.ps1 -UseBasicParsing | iex`
 - Install VM Guest Tools
-- Defrag/Compact drive
 
 ## Notes
 
