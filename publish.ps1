@@ -1,0 +1,11 @@
+Publish-Module -Path .\modules\WindowsBox.AutoLogon -NuGetApiKey $apikey
+Publish-Module -Path .\modules\WindowsBox.Compact -NuGetApiKey $apikey
+Publish-Module -Path .\modules\WindowsBox.Explorer -NuGetApiKey $apikey
+Publish-Module -Path .\modules\WindowsBox.Hibernation -NuGetApiKey $apikey
+Publish-Module -Path .\modules\WindowsBox.Network -NuGetApiKey $apikey
+Publish-Module -Path .\modules\WindowsBox.RDP -NuGetApiKey $apikey
+Publish-Module -Path .\modules\WindowsBox.UAC -NuGetApiKey $apikey
+Publish-Module -Path .\modules\WindowsBox.VagrantAccount -NuGetApiKey $apikey
+Publish-Module -Path .\modules\WindowsBox.VMGuestTools -NuGetApiKey $apikey
+Publish-Module -Path .\modules\WindowsBox.WindowsUpdates -NuGetApiKey $apikey
+Publish-Module -Path .\modules\WindowsBox.WinRM -NuGetApiKey $apikey
