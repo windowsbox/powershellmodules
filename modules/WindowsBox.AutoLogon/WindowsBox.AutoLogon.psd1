@@ -66,7 +66,7 @@ Description = 'Commands to configure auto logon on Windows boxes'
 # NestedModules = @()
 
 # Functions to export from this module
-FunctionsToExport = @('Configure-Hibernation')
+FunctionsToExport = @('Configure-AutoLogon')
 
 # Cmdlets to export from this module
 CmdletsToExport = @()
