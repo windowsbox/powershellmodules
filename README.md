@@ -1,6 +1,10 @@
 # PowerShell Modules
+Repo for PowerShell modules used to build new Windows boxes from scratch.
 
-Repo for PowerShell modules used to build out new Windows boxes from scratch.
+## Requirements
+- PowerShell V3 or higher.
+- Windows 2012R2 or higher.
+- PowerShell package management preview or WMF 5 installed.
 
 ## Modules
 - Install Windows Updates
@@ -13,16 +17,16 @@ Repo for PowerShell modules used to build out new Windows boxes from scratch.
 - Configure Explorer
 - Configure Vagrant account
 - Compile .NET Assemblies (is this really needed?)
-- Defrag/Compact drive
-
-### Other Actions
-- Install Choco `iwr https://chocolatey.org/install.ps1 -UseBasicParsing | iex`
 - Install VM Guest Tools
+- Defrag/Compact drive
 
 ## Notes
 
-Get PowerShell version: `$PSVersionTable.PSVersion`
-Install PowerShell package management preview `choco install powershell-packagemanagement`
+- Get PowerShell version: `$PSVersionTable.PSVersion`
+- Install PowerShell package management preview `choco install powershell-packagemanagement`
+- PSGallery set to trusted: `Set-PSRepository -Name PSGallery -InstallationPolicy Trusted`
+- Install module example: `Install-Module -Name 'WindowsBox.WindowsUpdates'`
+- Install Choco `iwr https://chocolatey.org/install.ps1 -UseBasicParsing | iex`
 
 ## Links
 - [Packer-Windows](https://github.com/joefitzgerald/packer-windows)
