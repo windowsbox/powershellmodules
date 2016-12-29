@@ -8,6 +8,7 @@ Repo for PowerShell modules used to build out new Windows boxes from scratch.
 - Set NICs to private
 - Disable Hibernate
 - Disable AutoLogon
+- Disable UAC
 - Enable RDP
 - Configure Explorer
 - Configure Vagrant account
