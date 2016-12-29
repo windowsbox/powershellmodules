@@ -66,7 +66,7 @@ Description = 'Commands to configure RDP on Windows boxes'
 # NestedModules = @()
 
 # Functions to export from this module
-FunctionsToExport = @('Configure-RDP')
+FunctionsToExport = @('Enable-RDP')
 
 # Cmdlets to export from this module
 CmdletsToExport = @()

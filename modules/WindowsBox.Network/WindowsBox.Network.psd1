@@ -66,7 +66,7 @@ Description = 'Commands to configure networking on Windows boxes'
 # NestedModules = @()
 
 # Functions to export from this module
-FunctionsToExport = @('Configure-NetworkConnection')
+FunctionsToExport = @('Set-NetworkToPrivate')
 
 # Cmdlets to export from this module
 CmdletsToExport = @()

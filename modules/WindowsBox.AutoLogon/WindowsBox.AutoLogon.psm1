@@ -4,6 +4,6 @@
 .Description
     This cmdlet configures Windows AutoLogon
 #>
-function Configure-AutoLogon {
+function Disable-AutoLogon {
     Set-ItemProperty 'HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Winlogon' -name AutoAdminLogon -value 0
 }

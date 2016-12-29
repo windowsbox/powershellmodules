@@ -66,7 +66,7 @@ Description = 'Commands to configure UAC on Windows boxes'
 # NestedModules = @()
 
 # Functions to export from this module
-FunctionsToExport = @('Configure-UAC')
+FunctionsToExport = @('Disable-UAC')
 
 # Cmdlets to export from this module
 CmdletsToExport = @()

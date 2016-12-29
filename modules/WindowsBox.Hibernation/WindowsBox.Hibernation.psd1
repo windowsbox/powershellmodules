@@ -66,7 +66,7 @@ Description = 'Commands to configure hibernation on Windows boxes'
 # NestedModules = @()
 
 # Functions to export from this module
-FunctionsToExport = @('Configure-Hibernation')
+FunctionsToExport = @('Disable-Hibernation')
 
 # Cmdlets to export from this module
 CmdletsToExport = @()

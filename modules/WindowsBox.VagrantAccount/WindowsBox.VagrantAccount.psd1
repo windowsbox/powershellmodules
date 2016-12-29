@@ -66,7 +66,7 @@ Description = 'Commands to configure Vagrant user account on Windows boxes'
 # NestedModules = @()
 
 # Functions to export from this module
-FunctionsToExport = @('Configure-VagrantAccount')
+FunctionsToExport = @('Set-VagrantAccount')
 
 # Cmdlets to export from this module
 CmdletsToExport = @()

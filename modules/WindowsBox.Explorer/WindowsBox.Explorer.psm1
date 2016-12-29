@@ -4,7 +4,7 @@
 .Description
     This cmdlet configures Windows Explorer
 #>
-function Configure-Explorer {
+function Set-ExplorerConfiguration {
     # Show file extensions
     Set-ItemProperty HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\ -name HideFileExt -value 0
 
