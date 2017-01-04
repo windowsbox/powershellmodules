@@ -11,9 +11,10 @@ environment:
 
 install:
   - ps: Install-Module -Name PSScriptAnalyzer
+  - ps: Install-Module -Name BuildHelpers
 
 build_script:
   - ps: Invoke-ScriptAnalyzer -Path c:\projects\powershellmodules -Recurse
 
 deploy_script:
-  - ps: . .\deploy.ps1
+  - ps: .\publish.ps1

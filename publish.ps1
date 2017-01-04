@@ -8,7 +8,7 @@ if ($null -eq $env:APIKEY) {
 $apikey = $env:APIKEY
 
 # loop over each module
-$modules = ls modules
+$modules = Get-ChildItem modules
 foreach ($m in $modules) {
   Set-BuildEnvironment -Path ".\modules\$($m.Name)"
 
@@ -18,9 +18,9 @@ foreach ($m in $modules) {
 
   # publish the new version if this is a master branch build
   if ($env:appveyor_repo_branch -eq 'master') {
-    Write-Host "Publishing $($m.Name) version $version"
+    Write-Output "Publishing $($m.Name) version $version"
     Publish-Module -Path ".\modules\$($m.Name)" -NuGetApiKey $apikey
   } else {
-    Write-Host "Skipping publish $($m.Name) version $version because not on master branch and/or not in AppVeyor"
+    Write-Output "Skipping publish $($m.Name) version $version because not on master branch and/or not in AppVeyor"
   }
 }
