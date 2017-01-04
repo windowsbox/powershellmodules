@@ -5,6 +5,9 @@
     This cmdlet installs VM Guest tools for VirtualBox from a mounted CD
 #>
 function Install-VMGuestTools {
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns")]
+    param()
+    
     $installed = $false
     foreach ($drive in Get-PSDrive -PSProvider 'FileSystem') {
         $setup = "$($drive.Root)VBoxWindowsAdditions.exe"

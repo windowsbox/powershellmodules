@@ -5,6 +5,9 @@
     This cmdlet configures the net connection interface to be private
 #>
 function Set-NetworkToPrivate {
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions")]
+    param()
+    
     # Don't prompt for network location
     New-Item -Path "HKLM:\SYSTEM\CurrentControlSet\Control\Network\NewNetworkWindowOff" -Force
 

@@ -5,6 +5,9 @@
     This cmdlet installs all available Windows Updates in batches
 #>
 function Install-WindowsUpdates {
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns")]
+    param()
+    
     $script:ScriptName = $MyInvocation.MyCommand.ToString()
     $script:ScriptPath = $MyInvocation.MyCommand.Path
     $script:UpdateSession = New-Object -ComObject 'Microsoft.Update.Session'
@@ -19,11 +22,11 @@ function Install-WindowsUpdates {
     $script:MoreUpdates=0
     $script:MaxCycles=5
 
-    Check-WindowsUpdates
+    Get-UpdateBatch
     if ($script:MoreUpdates -eq 1) {
-        Install-WinUpdates
+        Install-UpdateBatch
     } else {
-        Check-ContinueRestartOrEnd
+        Invoke-RebootOrComplete
     }
 }
 
@@ -32,10 +35,10 @@ function LogWrite {
     Param ([string]$logstring)
     $now = Get-Date -format s
     Add-Content "C:\Windows\Temp\win-updates.log" -value "$now $logstring"
-    Write-Host $logstring
+    Write-Output $logstring
 }
 
-function Check-ContinueRestartOrEnd() {
+function Invoke-RebootOrComplete() {
     $RegistryKey = "HKLM:\SOFTWARE\Microsoft\Windows\CurrentVersion\Run"
     $RegistryEntry = "InstallWindowsUpdates"
     switch ($script:RestartRequired) {
@@ -47,10 +50,10 @@ function Check-ContinueRestartOrEnd() {
             }
 
             LogWrite "No Restart Required"
-            Check-WindowsUpdates
+            Get-UpdateBatch
 
             if (($script:MoreUpdates -eq 1) -and ($script:Cycles -le $script:MaxCycles)) {
-                Install-WinUpdates
+                Install-UpdateBatch
             } elseif ($script:Cycles -gt $script:MaxCycles) {
                 LogWrite "Exceeded Cycle Count - Stopping"
                 Enable-WinRM
@@ -78,7 +81,7 @@ function Check-ContinueRestartOrEnd() {
     }
 }
 
-function Install-WinUpdates() {
+function Install-UpdateBatch() {
     $script:Cycles++
     LogWrite "Evaluating Available Updates with limit of $($script:MaxUpdatesPerCycle):"
     $UpdatesToDownload = New-Object -ComObject 'Microsoft.Update.UpdateColl'
@@ -86,7 +89,7 @@ function Install-WinUpdates() {
     $CurrentUpdates = $SearchResult.Updates | Select-Object
     while($script:i -lt $CurrentUpdates.Count -and $script:CycleUpdateCount -lt $script:MaxUpdatesPerCycle) {
         $Update = $CurrentUpdates[$script:i]
-        if (($Update -ne $null) -and (!$Update.IsDownloaded)) {
+        if (($null -ne $Update) -and (!$Update.IsDownloaded)) {
             [bool]$addThisUpdate = $false
             if ($Update.InstallationBehavior.CanRequestUserInput) {
                 LogWrite "> Skipping: $($Update.Title) because it requires user input"
@@ -181,10 +184,10 @@ function Install-WinUpdates() {
         LogWrite "Result: " $InstallationResult.GetUpdateResult($i).ResultCode;
     }
 
-    Check-ContinueRestartOrEnd
+    Invoke-RebootOrComplete
 }
 
-function Check-WindowsUpdates() {
+function Get-UpdateBatch() {
     LogWrite "Checking For Windows Updates"
     $Username = $env:USERDOMAIN + "\" + $env:USERNAME
 
@@ -227,7 +230,7 @@ function Check-WindowsUpdates() {
             LogWrite "Showing SearchResult was unsuccessful. Rebooting."
             $script:RestartRequired=1
             $script:MoreUpdates=0
-            Check-ContinueRestartOrEnd
+            Invoke-RebootOrComplete
             LogWrite "Show never happen to see this text!"
             Restart-Computer
         }

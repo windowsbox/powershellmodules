@@ -5,6 +5,9 @@
     This cmdlet configures Windows Explorer
 #>
 function Set-ExplorerConfiguration {
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions")]
+    param()
+    
     # Show file extensions
     Set-ItemProperty HKCU:\SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\Advanced\ -name HideFileExt -value 0
 
