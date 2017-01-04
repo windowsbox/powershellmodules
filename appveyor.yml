@@ -17,4 +17,4 @@ build_script:
   - ps: Invoke-ScriptAnalyzer -Path c:\projects\powershellmodules -Recurse
 
 deploy_script:
-  - ps: .\publish.ps1
+  - ps: . .\publish.ps1
