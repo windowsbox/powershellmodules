@@ -1,6 +1,6 @@
 version: "1.0.0.{build}-{branch}"
 
-image: Visual Studio 2015
+image: wmf5
 platform: x64
 
 clone_folder: c:\projects\powershellmodules
