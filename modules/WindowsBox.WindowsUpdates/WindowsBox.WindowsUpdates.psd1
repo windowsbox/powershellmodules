@@ -48,7 +48,7 @@ Description = 'Commands to install Windows Updates on a Windows box'
 # ProcessorArchitecture = ''
 
 # Modules that must be imported into the global environment prior to importing this module
-RequiredModules = @(@{ModuleName='WindowsBox.WinRM'; GUID='1443e65d-b18e-4277-abc8-3eb60a8f1f52'; })
+RequiredModules = @(@{ModuleName='WindowsBox.WinRM'; ModuleVersion='0.1'; GUID='1443e65d-b18e-4277-abc8-3eb60a8f1f52'; })
 
 # Assemblies that must be loaded prior to importing this module
 # RequiredAssemblies = @()
