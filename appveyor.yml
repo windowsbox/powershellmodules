@@ -5,6 +5,10 @@ platform: x64
 
 clone_folder: c:\projects\powershellmodules
 
+environment:
+  apikey:
+    secure: va5y0yl54j06dyQqLoczP/9t/YyWPBTpBIh/12tw+PmfKID3YL6AIcSKh7VSQRC4
+
 install:
   - ps: Install-Module -Name PSScriptAnalyzer
 
