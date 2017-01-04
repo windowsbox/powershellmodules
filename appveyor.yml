@@ -10,10 +10,13 @@ environment:
     secure: va5y0yl54j06dyQqLoczP/9t/YyWPBTpBIh/12tw+PmfKID3YL6AIcSKh7VSQRC4
 
 install:
+  - ps: Install-Package Nuget -Force
   - ps: Install-Module -Name PSScriptAnalyzer
   - ps: Install-Module -Name BuildHelpers
 
 build_script:
   - ps: Invoke-ScriptAnalyzer -Path c:\projects\powershellmodules -Recurse
+
+deploy_script:
   - ps: .\publish.ps1
 
