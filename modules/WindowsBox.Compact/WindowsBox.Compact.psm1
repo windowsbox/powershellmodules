@@ -5,24 +5,26 @@
     This cmdlet optimizes the disk usage of Windows
 #>
 function Optimize-DiskUsage {
-    Write-Host "Cleaning Windows Update Files"
+    Write-Output "Cleaning Windows Update Files"
     Remove-Item "C:\Windows\SoftwareDistribution\Download" -Recurse -Force -ErrorAction SilentlyContinue
     mkdir C:\Windows\SoftwareDistribution\Download
     net start wuauserv
 
-    Write-Host "Cleaning Temp Files"
+    Write-Output "Cleaning Temp Files"
     try {
         Takeown /d Y /R /f "C:\Windows\Temp\*"
         Icacls "C:\Windows\Temp\*" /GRANT:r administrators:F /T /c /q  2>&1
         Remove-Item "C:\Windows\Temp\*" -Recurse -Force -ErrorAction SilentlyContinue
-    } catch { }
+    } catch {
+        Write-Output 'Failed to remove some temp files'
+    }
 
-    Write-Host "Defragging C: Drive"
+    Write-Output "Defragging C: Drive"
     Optimize-Volume -DriveLetter C
 
-    Write-Host "Wiping Empty Space on C: Drive"
+    Write-Output "Wiping Empty Space on C: Drive"
     $FilePath="c:\zero.tmp"
-    $Volume = Get-WmiObject win32_logicaldisk -filter "DeviceID='C:'"
+    $Volume = Get-CimInstance -ClassName Win32_LogicalDisk -Filter "DeviceID='C:'"
     $ArraySize= 64kb
     $SpaceToLeave= $Volume.Size * 0.05
     $FileSize= $Volume.FreeSpace - $SpacetoLeave
