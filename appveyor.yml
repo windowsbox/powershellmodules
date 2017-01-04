@@ -1,0 +1,12 @@
+version: "1.0.0.{build}-{branch}"
+
+image: Visual Studio 2015
+platform: x64
+
+clone_folder: c:\projects\powershellmodules
+
+install:
+  - ps: Install-Module -Name PSScriptAnalyzer
+
+build_script:
+  - ps: Invoke-ScriptAnalyzer -Path c:\projects\powershellmodules -Recurse
