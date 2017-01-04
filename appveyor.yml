@@ -11,6 +11,7 @@ environment:
 
 install:
   - ps: Install-Package Nuget -Force
+  - ps: Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
   - ps: Install-Module -Name PSScriptAnalyzer
   - ps: Install-Module -Name BuildHelpers
 
