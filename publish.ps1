@@ -25,7 +25,7 @@ foreach ($m in $modules) {
   # publish the new version if this is a master branch build
   if ($env:appveyor_repo_branch -eq 'master') {
     Write-Output "Publishing $($m.Name) version $version"
-    Publish-Module -Path ".\modules\$($m.Name)" -NuGetApiKey $apikey
+    Publish-Module -Path ".\modules\$($m.Name)" -NuGetApiKey $apikey -Verbose
   } else {
     Write-Output "Skipping publish $($m.Name) version $version because not on master branch and/or not in AppVeyor"
   }
