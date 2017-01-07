@@ -10,7 +10,7 @@ environment:
     secure: va5y0yl54j06dyQqLoczP/9t/YyWPBTpBIh/12tw+PmfKID3YL6AIcSKh7VSQRC4
 
 install:
-  - ps: Install-Package Nuget -Force
+  - ps: Install-Package Nuget -Force -MaximumVersion 3.4.3.855
   - ps: Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
   - ps: Install-Module -Name PSScriptAnalyzer
   - ps: Install-Module -Name BuildHelpers
