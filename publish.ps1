@@ -10,6 +10,10 @@ $apikey = $env:APIKEY
 # loop over each module
 $modules = Get-ChildItem modules
 foreach ($m in $modules) {
+  if ($m.Name -ne 'WindowsBox.WindowsUpdates') {
+    continue
+  }
+
   Set-BuildEnvironment -Path ".\modules\$($m.Name)"
 
   # Grab the latest published version and bump the metadata
