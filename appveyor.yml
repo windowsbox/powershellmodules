@@ -10,12 +10,7 @@ environment:
     secure: va5y0yl54j06dyQqLoczP/9t/YyWPBTpBIh/12tw+PmfKID3YL6AIcSKh7VSQRC4
 
 install:
-  - ps: $nugetdir = Join-Path -Path $env:ProgramData -ChildPath 'Microsoft\Windows\PowerShell\PowerShellGet'
-  - ps: mkdir $nugetdir
-  - ps: Invoke-WebRequest -Uri 'https://dist.nuget.org/win-x86-commandline/v3.4.4/NuGet.exe' -OutFile "$nugetdir\nuget.exe"
-  - ps: Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
-  - ps: Install-Module -Name PSScriptAnalyzer
-  - ps: Install-Module -Name BuildHelpers
+  - ps: .\install.ps1
 
 build_script:
   - ps: Invoke-ScriptAnalyzer -Path c:\projects\powershellmodules -Recurse
