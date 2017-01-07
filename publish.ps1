@@ -1,7 +1,5 @@
 # PS Gallery publish script to be called from AppVeyor
-
-Write-Output $PSVersionTable.PSVersion
-nuget help
+#
 
 # ensure we have a PSGallery API key
 if ($null -eq $env:APIKEY) {
@@ -10,13 +8,15 @@ if ($null -eq $env:APIKEY) {
 }
 $apikey = $env:APIKEY
 
+$deploy=$false
+if (($env:appveyor_repo_branch -eq 'master') -and ($env:appveyor_repo_commit_message -like '*deploy*')) {
+  Write-Output "Skipping publish because not on master branch or commit message doesn't contain deploy"
+  $deploy=$true
+}
+
 # loop over each module
 $modules = Get-ChildItem modules
 foreach ($m in $modules) {
-  if ($m.Name -ne 'WindowsBox.WindowsUpdates') {
-    continue
-  }
-
   Set-BuildEnvironment -Path ".\modules\$($m.Name)"
 
   # Grab the latest published version and bump the metadata
@@ -24,10 +24,10 @@ foreach ($m in $modules) {
   Update-Metadata -Path $env:BHPSModuleManifest -PropertyName ModuleVersion -Value $version
 
   # publish the new version if this is a master branch build
-  if ($env:appveyor_repo_branch -eq 'master') {
+  if ($deploy) {
     Write-Output "Publishing $($m.Name) version $version"
     Publish-Module -Path ".\modules\$($m.Name)" -NuGetApiKey $apikey -Verbose
   } else {
-    Write-Output "Skipping publish $($m.Name) version $version because not on master branch and/or not in AppVeyor"
+    Write-Output "Skipping publish $($m.Name) version $version"
   }
 }
