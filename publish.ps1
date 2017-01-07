@@ -1,5 +1,7 @@
 # PS Gallery publish script to be called from AppVeyor
 
+Write-Output $PSVersionTable.PSVersion
+
 # ensure we have a PSGallery API key
 if ($null -eq $env:APIKEY) {
   Write-Error '$env:APIKEY must be set before running'

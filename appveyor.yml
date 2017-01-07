@@ -1,6 +1,6 @@
 version: "1.0.0.{build}-{branch}"
 
-image: WMF 5
+image: Visual Studio 2015
 platform: x64
 
 clone_folder: c:\projects\powershellmodules
@@ -10,6 +10,7 @@ environment:
     secure: va5y0yl54j06dyQqLoczP/9t/YyWPBTpBIh/12tw+PmfKID3YL6AIcSKh7VSQRC4
 
 install:
+  - ps: choco install powershell-packagemanagement
   - ps: Install-Package Nuget -Force
   - ps: Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
   - ps: Install-Module -Name PSScriptAnalyzer
