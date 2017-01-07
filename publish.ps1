@@ -1,6 +1,7 @@
 # PS Gallery publish script to be called from AppVeyor
 
 Write-Output $PSVersionTable.PSVersion
+nuget help
 
 # ensure we have a PSGallery API key
 if ($null -eq $env:APIKEY) {
