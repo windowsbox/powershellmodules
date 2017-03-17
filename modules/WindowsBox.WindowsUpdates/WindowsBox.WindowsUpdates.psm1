@@ -5,7 +5,7 @@
     This cmdlet installs all available Windows Updates in batches
 #>
 function Install-WindowsUpdates {
-    [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns")]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
     param()
     
     $script:ScriptName = $MyInvocation.MyCommand.ToString()

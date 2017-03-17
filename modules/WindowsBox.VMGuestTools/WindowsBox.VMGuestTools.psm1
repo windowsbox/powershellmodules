@@ -5,7 +5,7 @@
     This cmdlet installs VM Guest tools for VirtualBox from a mounted CD
 #>
 function Install-VMGuestTools {
-    [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns")]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
     param()
     
     $installed = $false
