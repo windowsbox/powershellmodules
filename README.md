@@ -1,9 +1,11 @@
 # PowerShell Modules
 Repo for PowerShell modules used to build new Windows boxes from scratch.
 
+[![Build status](https://ci.appveyor.com/api/projects/status/rrmj9h7y1485qlca/branch/master?svg=true)](https://ci.appveyor.com/project/WindowsBoxAdmin/powershellmodules/branch/master)
+
 ## Requirements
 - PowerShell V3 or higher.
-- Windows 2012R2 or higher.
+- Windows 2012R2, 2016, or Windows10.
 - PowerShell package management preview or WMF 5 installed.
 
 ## Modules
@@ -14,19 +16,17 @@ Repo for PowerShell modules used to build new Windows boxes from scratch.
 - Disable AutoLogon
 - Disable UAC
 - Enable RDP
+- Enable dev mode and install Ubuntu subsystem
 - Configure Explorer
 - Configure Vagrant account
-- Compile .NET Assemblies (is this really needed?)
 - Install VM Guest Tools
 - Defrag/Compact drive
 
 ## Notes
 
 - Get PowerShell version: `$PSVersionTable.PSVersion`
-- Install PowerShell package management preview `choco install powershell-packagemanagement`
 - PSGallery set to trusted: `Set-PSRepository -Name PSGallery -InstallationPolicy Trusted`
 - Install module example: `Install-Module -Name 'WindowsBox.WindowsUpdates'`
-- Install Choco `iwr https://chocolatey.org/install.ps1 -UseBasicParsing | iex`
 
 ## Links
 - [Packer-Windows](https://github.com/joefitzgerald/packer-windows)
