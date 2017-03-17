@@ -5,7 +5,7 @@
     This cmdlet configures Windows Explorer
 #>
 function Set-ExplorerConfiguration {
-    [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions")]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
     param()
     
     # Show file extensions

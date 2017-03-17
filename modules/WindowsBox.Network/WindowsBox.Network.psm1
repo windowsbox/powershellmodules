@@ -5,7 +5,7 @@
     This cmdlet configures the net connection interface to be private
 #>
 function Set-NetworkToPrivate {
-    [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions")]
+    [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseShouldProcessForStateChangingFunctions", "")]
     param()
     
     # Don't prompt for network location
