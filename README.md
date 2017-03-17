@@ -1,5 +1,5 @@
 # PowerShell Modules
-Repo for PowerShell modules used to build new Windows boxes from scratch.
+PowerShell modules used to build new Windows boxes from scratch.
 
 [![Build status](https://ci.appveyor.com/api/projects/status/rrmj9h7y1485qlca/branch/master?svg=true)](https://ci.appveyor.com/project/WindowsBoxAdmin/powershellmodules/branch/master)
 
