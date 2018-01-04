@@ -12,7 +12,7 @@
 RootModule = 'WindowsBox.WinRM'
 
 # Version number of this module.
-ModuleVersion = '0.1'
+ModuleVersion = '0.2'
 
 # ID used to uniquely identify this module
 GUID = '1443e65d-b18e-4277-abc8-3eb60a8f1f52'
@@ -66,7 +66,7 @@ Description = 'Commands to enable WinRM on a Windows box'
 # NestedModules = @()
 
 # Functions to export from this module
-FunctionsToExport = @('Enable-WinRM')
+FunctionsToExport = @('Enable-WinRM', 'Enable-InsecureWinRM')
 
 # Cmdlets to export from this module
 CmdletsToExport = @()

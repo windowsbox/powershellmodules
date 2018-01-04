@@ -56,10 +56,8 @@ function Invoke-RebootOrComplete() {
                 Install-UpdateBatch
             } elseif ($script:Cycles -gt $script:MaxCycles) {
                 LogWrite "Exceeded Cycle Count - Stopping"
-                Enable-WinRM
             } else {
                 LogWrite "Done Installing Windows Updates"
-                Enable-WinRM
             }
         }
         1 {
@@ -151,7 +149,6 @@ function Install-UpdateBatch() {
         LogWrite 'No updates available to install...'
         $script:MoreUpdates=0
         $script:RestartRequired=0
-        Enable-WinRM
         break
     }
 
