@@ -12,7 +12,7 @@
 RootModule = 'WindowsBox.WindowsUpdates'
 
 # Version number of this module.
-ModuleVersion = '0.2'
+ModuleVersion = '0.3'
 
 # ID used to uniquely identify this module
 GUID = 'e46b71e1-e11d-4780-94c7-a65d64250ae8'
@@ -48,7 +48,7 @@ Description = 'Commands to install Windows Updates on a Windows box'
 # ProcessorArchitecture = ''
 
 # Modules that must be imported into the global environment prior to importing this module
-RequiredModules = @(@{ModuleName='WindowsBox.WinRM'; ModuleVersion='0.1'; GUID='1443e65d-b18e-4277-abc8-3eb60a8f1f52'; })
+# RequiredModules = @()
 
 # Assemblies that must be loaded prior to importing this module
 # RequiredAssemblies = @()
