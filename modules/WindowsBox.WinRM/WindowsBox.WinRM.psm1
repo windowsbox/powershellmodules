@@ -10,7 +10,7 @@ function Enable-InsecureWinRM {
     # Ensure the Windows firewall allows WinRM https traffic over port 5985
     Enable-NetFirewallRule -DisplayName 'Windows Remote Management (HTTP-In)'
 
-    Enable-WinRMWithLargeDefaults
+    Enable-WinRMConfiguration
 
     # Enable insecure basic auth over http
     winrm set winrm/config/service '@{AllowUnencrypted="true"}'
@@ -47,7 +47,7 @@ function Enable-WinRM {
         -Action Allow `
         -Profile Public
 
-    Enable-WinRMWithLargeDefaults
+    Enable-WinRMConfiguration
 
     # Create self signed cert for TLS connections to WinRM
     $cert = New-SelfSignedCertificate -CertstoreLocation Cert:\LocalMachine\My -DnsName "winrm"
@@ -59,7 +59,7 @@ function Enable-WinRM {
     winrm set 'winrm/config/listener?Address=*+Transport=HTTPS' "@{Port=`"5986`";Hostname=`"winrm`";CertificateThumbprint=`"$($cert.Thumbprint)`"}"
 }
 
-function Enable-WinRMWithLargeDefaults {
+function Enable-WinRMConfiguration {
     # Enable WinRM with defaults
     Enable-PSRemoting -Force -SkipNetworkProfileCheck
 
