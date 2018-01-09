@@ -201,7 +201,7 @@ function Get-UpdateBatch() {
     $script:maxAttempts = 12
     while(-not $script:successful -and $script:attempts -lt $script:maxAttempts) {
         try {
-            $script:SearchResult = $script:UpdateSearcher.Search("IsInstalled=0 and Type='Software' and IsHidden=0")
+            $script:SearchResult = $script:UpdateSearcher.Search("IsInstalled=0 and Type='Software' and IsHidden=0 and BrowseOnly=0")
             $script:successful = $TRUE
         } catch {
             LogWrite $_.Exception | Format-List -force
@@ -228,7 +228,7 @@ function Get-UpdateBatch() {
             $script:RestartRequired=1
             $script:MoreUpdates=0
             Invoke-RebootOrComplete
-            LogWrite "Show never happen to see this text!"
+            LogWrite "Should never happen!"
             Restart-Computer
         }
     } else {
