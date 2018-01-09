@@ -13,8 +13,9 @@ function Install-VMGuestTools {
         $setup = "$($drive.Root)VBoxWindowsAdditions.exe"
 
         if (Test-Path $setup) {
-            Get-ChildItem "$($drive.Root)cert\*.cer" `
-                | ForEach-Object { .\VboxCertUtil.exe add-trusted-publisher $_.FullName --root $_.FullName }
+            Push-Location "$($drive.Root)cert"
+            Get-ChildItem *.cer | ForEach-Object { .\VboxCertUtil.exe add-trusted-publisher $_.FullName --root $_.FullName }
+            Pop-Location
 
             mkdir 'C:\Windows\Temp\virtualbox' -ErrorAction SilentlyContinue
             Start-Process -FilePath $setup -ArgumentList '/S' -WorkingDirectory 'C:\Windows\Temp\virtualbox' -Wait
