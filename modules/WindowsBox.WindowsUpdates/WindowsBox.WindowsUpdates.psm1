@@ -70,7 +70,7 @@ function Invoke-RebootOrComplete() {
             }
 
             LogWrite "Restart Required - Restarting..."
-            Restart-Computer
+            Restart-Computer -Force
         }
         default {
             LogWrite "Unsure If A Restart Is Required"
