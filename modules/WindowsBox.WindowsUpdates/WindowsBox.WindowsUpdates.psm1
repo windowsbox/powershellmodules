@@ -25,9 +25,8 @@ function Install-WindowsUpdates {
     Get-UpdateBatch
     if ($script:MoreUpdates -eq 1) {
         Install-UpdateBatch
-    } else {
-        Invoke-RebootOrComplete
     }
+    Invoke-RebootOrComplete
 }
 
 
@@ -180,8 +179,6 @@ function Install-UpdateBatch() {
         LogWrite "Item: " $UpdatesToInstall.Item($i).Title
         LogWrite "Result: " $InstallationResult.GetUpdateResult($i).ResultCode;
     }
-
-    Invoke-RebootOrComplete
 }
 
 function Get-UpdateBatch() {

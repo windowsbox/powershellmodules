@@ -12,7 +12,7 @@
 RootModule = 'WindowsBox.WindowsUpdates'
 
 # Version number of this module.
-ModuleVersion = '0.4'
+ModuleVersion = '0.5'
 
 # ID used to uniquely identify this module
 GUID = 'e46b71e1-e11d-4780-94c7-a65d64250ae8'
