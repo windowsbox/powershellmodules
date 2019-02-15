@@ -8,8 +8,7 @@ function Install-WindowsUpdates {
     [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseSingularNouns", "")]
     param()
     
-    $script:ScriptName = $MyInvocation.MyCommand.ToString()
-    $script:ScriptPath = $MyInvocation.MyCommand.Path
+    $script:ScriptName = "Install-WindowsUpdates"
     $script:UpdateSession = New-Object -ComObject 'Microsoft.Update.Session'
     $script:UpdateSession.ClientApplicationID = 'WindowsBox.WindowsUpdates'
     $script:UpdateSearcher = $script:UpdateSession.CreateUpdateSearcher()
@@ -83,10 +82,20 @@ function Install-UpdateBatch() {
     LogWrite "Evaluating Available Updates with limit of $($script:MaxUpdatesPerCycle):"
     $UpdatesToDownload = New-Object -ComObject 'Microsoft.Update.UpdateColl'
     $script:i = 0;
-    $CurrentUpdates = $SearchResult.Updates | Select-Object
+    
+    if ($Host.Version.Major -ge 5) {
+        $CurrentUpdates = $SearchResult.Updates
+    } else {
+        $CurrentUpdates = $SearchResult.Updates | Select-Object
+    }
+
     while($script:i -lt $CurrentUpdates.Count -and $script:CycleUpdateCount -lt $script:MaxUpdatesPerCycle) {
         $Update = $CurrentUpdates[$script:i]
-        if (($null -ne $Update) -and (!$Update.IsDownloaded)) {
+        if ($null -eq $Update) {
+            LogWrite "> Skipping update number $script:i because it's null"
+            Continue
+        }
+        if (!$Update.IsDownloaded) {
             [bool]$addThisUpdate = $false
             if ($Update.InstallationBehavior.CanRequestUserInput) {
                 LogWrite "> Skipping: $($Update.Title) because it requires user input"
@@ -161,23 +170,19 @@ function Install-UpdateBatch() {
     $Installer = $script:UpdateSession.CreateUpdateInstaller()
     $Installer.Updates = $UpdatesToInstall
     $InstallationResult = $Installer.Install()
-
-    LogWrite "Installation Result: $($InstallationResult.ResultCode)"
-    LogWrite "Reboot Required: $($InstallationResult.RebootRequired)"
-    LogWrite 'Listing of updates installed and individual installation results:'
+    
     if ($InstallationResult.RebootRequired) {
         $script:RestartRequired=1
     } else {
         $script:RestartRequired=0
     }
 
+    LogWrite "Installation Result: $($InstallationResult.ResultCode)"
+    LogWrite "Reboot Required: $($InstallationResult.RebootRequired)"
+    LogWrite 'Listing of updates installed and individual installation results:'
     for($i=0; $i -lt $UpdatesToInstall.Count; $i++) {
-        New-Object -TypeName PSObject -Property @{
-            Title = $UpdatesToInstall.Item($i).Title
-            Result = $InstallationResult.GetUpdateResult($i).ResultCode
-        }
-        LogWrite "Item: " $UpdatesToInstall.Item($i).Title
-        LogWrite "Result: " $InstallationResult.GetUpdateResult($i).ResultCode;
+        LogWrite "> Update: $($UpdatesToInstall.Item($i).Title)"
+        LogWrite "> Result: $($InstallationResult.GetUpdateResult($i).ResultCode)"
     }
 }
 
@@ -187,7 +192,7 @@ function Get-UpdateBatch() {
 
     New-EventLog -Source $ScriptName -LogName 'Windows Powershell' -ErrorAction SilentlyContinue
 
-    $Message = "Script: " + $ScriptPath + "`nScript User: " + $Username + "`nStarted: " + (Get-Date).toString()
+    $Message = "Script: $ScriptName`nScript User: $Username `nStarted: " + (Get-Date).toString()
 
     Write-EventLog -LogName 'Windows Powershell' -Source $ScriptName -EventID "104" -EntryType "Information" -Message $Message
     LogWrite $Message
@@ -213,11 +218,11 @@ function Get-UpdateBatch() {
         LogWrite $Message
         try {
             for($i=0; $i -lt $script:SearchResult.Updates.Count; $i++) {
-              LogWrite $script:SearchResult.Updates.Item($i).Title
-              LogWrite $script:SearchResult.Updates.Item($i).Description
-              LogWrite $script:SearchResult.Updates.Item($i).RebootRequired
-              LogWrite $script:SearchResult.Updates.Item($i).EulaAccepted
-          }
+                LogWrite "> Title: $($script:SearchResult.Updates.Item($i).Title)"
+                LogWrite "> Description: $($script:SearchResult.Updates.Item($i).Description)"
+                LogWrite "> Reboot Required: $($script:SearchResult.Updates.Item($i).RebootRequired)"
+                LogWrite "> EULA Accepted: $($script:SearchResult.Updates.Item($i).EulaAccepted)"
+            }
             $script:MoreUpdates=1
         } catch {
             LogWrite $_.Exception | Format-List -force
